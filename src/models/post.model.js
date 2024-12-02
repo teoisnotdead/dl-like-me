@@ -6,7 +6,8 @@ export const Post = {
       const SQL = 'INSERT INTO posts (titulo, img, descripcion, likes) VALUES ($1, $2, $3, $4)'
       const values = [titulo, img, descripcion, likes || 0]
 
-      await DB.query(SQL, values)
+      const { rows } = await DB.query(SQL, values)
+      return rows[0]
     } catch (error) {
       throw error
     }
