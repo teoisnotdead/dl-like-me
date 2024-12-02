@@ -1,6 +1,14 @@
 import { DB } from '../config/db.js'
 
 export const Post = {
+  getAll: async () => {
+    try {
+      const { rows } = await DB.query('SELECT * FROM posts')
+      return rows
+    } catch (error) {
+      throw error
+    }
+  },
   create: async ({ titulo, img, descripcion, likes }) => {
     try {
       const SQL = `

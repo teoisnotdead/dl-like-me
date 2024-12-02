@@ -1,6 +1,14 @@
 import { Post } from '../models/post.model.js'
 
 export const PostController = {
+  getPosts: async (req, res) => {
+    try {
+      const posts = await Post.getAll()
+      res.status(200).json(posts)
+    } catch (error) {
+      res.status(500).send('Error al obtener los posts')
+    }
+  },
   createPost: async (req, res) => {
     console.log('req.body', req.body)
     try {
