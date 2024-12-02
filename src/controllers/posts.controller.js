@@ -4,7 +4,9 @@ export const PostController = {
   createPost: async (req, res) => {
     console.log('req.body', req.body)
     try {
-      const { titulo, img, descripcion, likes } = req.body
+      const { titulo, url, descripcion, likes } = req.body
+      const img = url || 'https://placehold.co/600x400'
+
       await Post.create({ titulo, img, descripcion, likes })
       res.status(201).send('Post creado con exito')
     } catch (error) {
