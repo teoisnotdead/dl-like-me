@@ -8,6 +8,7 @@ export const PostController = {
       const img = url || 'https://placehold.co/600x400'
 
       const newPost = await Post.create({ titulo, img, descripcion, likes })
+      console.log('newPost', newPost);
       res.status(201).json({
         message: 'Post creado correctamente',
         post: newPost,
