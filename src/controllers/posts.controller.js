@@ -50,4 +50,25 @@ export const PostController = {
       })
     }
   },
+  deletePost: async (req, res) => {
+    try {
+      const { id } = req.params
+      const deletedPost = await Post.delete(id)
+
+      if (!deletedPost) {
+        res.status(404).send({
+          message: 'Post no encontrado',
+        })
+      }
+
+      res.status(200).json({
+        message: 'Post eliminado correctamente',
+        post: deletedPost,
+      })
+    } catch (error) {
+      res.status(500).send({
+        message: 'Error al eliminar el post',
+      })
+    }
+  },
 }

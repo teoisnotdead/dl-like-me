@@ -40,5 +40,18 @@ export const Post = {
       throw error
     }
   },
+  delete: async (id) => {
+    try {
+      const SQL = `
+        DELETE FROM posts
+        WHERE id = $1
+        RETURNING *`
+
+      const { rows } = await DB.query(SQL, [id])
+      return rows[0]
+    } catch (error) {
+      throw error
+    }
+  },
   
 }
