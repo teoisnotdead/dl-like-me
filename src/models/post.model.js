@@ -25,4 +25,20 @@ export const Post = {
       throw error
     }
   },
+  updateLikes: async (id) => {
+    try {
+      const SQL = `
+        UPDATE posts
+        SET likes = likes + 1
+        WHERE id = $1
+        RETURNING *`
+
+      const { rows } = await DB.query(SQL, [id])
+      return rows[0]
+    } catch (error) {
+      console.log('error', error);
+      throw error
+    }
+  },
+  
 }
